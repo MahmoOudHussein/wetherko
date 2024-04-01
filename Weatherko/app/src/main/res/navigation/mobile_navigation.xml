@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.weatherko.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_maps_fragment"
+            app:destination="@id/maps_fragment"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="lat"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="log"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="isOpen"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_favourite"
+        android:name="com.example.weatherko.favourite.FavouriteFragment"
+        android:label="@string/menu_favourite"
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_nav_favourite_to_maps_fragment"
+            app:destination="@id/maps_fragment"
+            app:popUpTo="@id/nav_favourite"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="isHome"
+                android:defaultValue="false" />
+        </action>
+        <argument
+            android:name="lat"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="log"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_alert"
+        android:name="com.example.weatherko.alert.AlertFragment"
+        android:label="@string/menu_alert"
+        tools:layout="@layout/fragment_alert" />
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.weatherko.setting.SettingFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/maps_fragment"
+        android:name="com.example.weatherko.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="isHome"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <action
+            android:id="@+id/action_maps_fragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/maps_fragment"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="isOpen"
+                android:defaultValue="false" />
+        </action>
+        <action
+            android:id="@+id/action_maps_fragment_to_nav_favourite"
+            app:destination="@id/nav_favourite"
+            app:popUpTo="@id/maps_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

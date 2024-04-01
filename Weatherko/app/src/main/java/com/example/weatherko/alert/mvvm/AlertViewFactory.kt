@@ -1,0 +1,14 @@
+package com.example.weatherko.alert.mvvm
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.weatherko.alert.mvvm.repository.RepositoryAlert
+
+class AlertViewFactory(private val repositoryAlert: RepositoryAlert):ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return if (modelClass.isAssignableFrom(AlertViewModel::class.java)){
+            AlertViewModel(repositoryAlert) as T
+        } else
+            throw java.lang.IllegalArgumentException("Wrong view Model")
+    }
+}
